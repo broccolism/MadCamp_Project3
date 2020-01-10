@@ -27,6 +27,7 @@ public class StaticObjectGenerator : MonoBehaviour
 
     public void Start()
     {
+        chunkNumber = TerrainGenerator.chunkRenderNumber;
         chunkSize = MapGenerator.mapChunkSize;
         scale = TerrainGenerator.scale;
         float width = terrainObjectType.prefab.GetComponent<Renderer>().bounds.size.x;

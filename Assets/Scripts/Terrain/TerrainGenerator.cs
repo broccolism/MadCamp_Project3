@@ -5,7 +5,7 @@ using UnityEngine;
 public class TerrainGenerator : MonoBehaviour
 {
     public static Vector2 offetPosition;
-    int chunkRenderNumber = 1;
+    public const int chunkRenderNumber = 3;
     public Material mapMaterial;
     static MapGenerator mapGenerator;
     public const float scale = 2f;
