@@ -13,7 +13,6 @@ public class MapGenerator : MonoBehaviour
     [Range(0, 6)]
     public int levelOfDetail;
     public Noise.NormalizeMode normalizeMode;
-    public float scale = 1f;
 
     public int octaves;
     [Range(0,1)]
