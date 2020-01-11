@@ -117,7 +117,7 @@ public class Fox_Hunt : MonoBehaviour
             foxStatus = FoxStatus.Idle;
             return;
         }
-
+        
         if (offset.magnitude > viewRange)
         {
             target_rabbit = null;
@@ -126,9 +126,8 @@ public class Fox_Hunt : MonoBehaviour
         else
         {
             Debug.Log("chasing");
-            fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.1f);
+            fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.2f);
             fox.transform.LookAt(target_rabbit.transform);
-            fox.velocity = (this.transform.forward * 10);
         }
     }
 
