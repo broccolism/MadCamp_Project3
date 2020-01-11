@@ -125,7 +125,6 @@ public class Fox_Hunt : MonoBehaviour
         }
         else
         {
-            Debug.Log("chasing");
             fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.2f);
             fox.transform.LookAt(target_rabbit.transform);
         }
