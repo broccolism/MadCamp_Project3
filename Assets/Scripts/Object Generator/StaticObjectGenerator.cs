@@ -220,8 +220,6 @@ public class StaticTerrainObjectType
     public bool useCollider;
     public bool isKnematic;
     public bool isErect;
-
-    public float height;
     public GameObject prefab;
 
     [Range(0, 1f)]
