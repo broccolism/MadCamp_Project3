@@ -103,7 +103,8 @@ public class Other_Rabbits : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        TextMeshPro imText = GetComponent<TextMeshPro>();
+        TextMeshPro imText = GetComponentInChildren<TextMeshPro>();
+        //imText.transform.rotation = Camera.main.transform.rotation;
         int num = Random.Range(0, messages.Length - 1);
         imText.text = messages[num];
         yield return new WaitForSeconds(2);
