@@ -10,13 +10,18 @@ public class GameManager : MonoBehaviour
         MainMenu,
         StartInGame,
         UpdateInGame,
-        Result,
+        StartResult,
+        UpdateResult,
     }
     public float playTimeInSecond;
     public GameStatus gameStatus;
 
     //시스템 UI정보
     public Text playTimeText;
+    public InGameUI inGameUI;
+
+    //점수
+    public float finalScore;
 
     // Start is called before the first frame update
     void Start()
@@ -39,31 +44,50 @@ public class GameManager : MonoBehaviour
             case GameStatus.UpdateInGame:
                 UpdateInGame();
                 break;
-            case GameStatus.Result:
+            case GameStatus.StartResult:
+                StartResult();
+                break;
+            case GameStatus.UpdateResult:
                 UpdateResult();
                 break;
         }
     }
 
-    public void UpdateMainMenu()
+    private void UpdateMainMenu()
     {
 
     }
 
-    public void StartInGame()
+    private void StartInGame()
     {
+        Cursor.visible = false;
         playTimeInSecond = Time.time;
         gameStatus = GameStatus.UpdateInGame;
     }
 
-    public void UpdateInGame()
+    private void UpdateInGame()
     {
         playTimeText.text = SecondToString(Time.time - playTimeInSecond);
     }
 
-    public void UpdateResult()
+    private void StartResult()
     {
+        Cursor.visible = true;
+        finalScore = Time.time - playTimeInSecond;
+        gameStatus = GameStatus.UpdateResult; 
+    }
 
+    private void UpdateResult()
+    {
+        inGameUI.ActivateEndGame();
+        inGameUI.endsScoreText.text = SecondToString(finalScore);
+    }
+
+    public void EndGame()
+    {
+        Time.timeScale = 0;
+        if(gameStatus == GameStatus.UpdateInGame)
+            gameStatus = GameStatus.StartResult;
     }
 
     public string SecondToString(float _second)

@@ -46,10 +46,10 @@ public class StaticObjectGenerator : MonoBehaviour
 
     IEnumerator tempCorutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSecondsRealtime(3);
         GenerateTerrainObject();
     }
-
+     
 
     void GenerateTerrainObject()
     {

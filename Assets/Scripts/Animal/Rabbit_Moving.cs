@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Rabbit_Moving : MonoBehaviour
 {
+    //게임 관련 변수
+    public GameManager gameManager;
+
     public float moveSpeed = 10.0f;
     public float rotSpeed = 3.0f;
     public float HP = 500f;
@@ -36,11 +39,11 @@ public class Rabbit_Moving : MonoBehaviour
             if (this.transform.position.y <= 12.1f)
             {
                 playerVital.Attack(1);
+                HP--;
             }
             MoveCtrl();
             RotCtrl();
         }
-
     }
 
     void MoveCtrl()
@@ -86,6 +89,6 @@ public class Rabbit_Moving : MonoBehaviour
 
     void Die()
     {
-
+        gameManager.EndGame();
     }
 }

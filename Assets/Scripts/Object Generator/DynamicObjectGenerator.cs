@@ -52,7 +52,7 @@ public class DynamicObjectGenerator : MonoBehaviour
 
     IEnumerator tempCorutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSecondsRealtime(3);
         GenerateInitialDynamicObject();
     }
 
@@ -71,7 +71,7 @@ public class DynamicObjectGenerator : MonoBehaviour
                 }
             }
             totalNumber = dynamicObjectList.Count;
-            yield return new WaitForSecondsRealtime(terrainObjectType.spwanIntervalTime);
+            yield return new WaitForSeconds(terrainObjectType.spwanIntervalTime);
         }
     }
 

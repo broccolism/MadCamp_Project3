@@ -7,15 +7,16 @@ public class PlayerVital : MonoBehaviour
 {
     //Control UI element of player
     public Image playerHealthImage;
-    public Text playerHeathText;
+    public Text playerHealthText;
     public float maxPlayerHealth;
     private float playerHealth;
     
-    public 
     // Start is called before the first frame update
     void Start()
     {
         playerHealth = maxPlayerHealth;
+        playerHealthText.text = maxPlayerHealth.ToString();
+        playerHealthImage.fillAmount = 1;
     }
 
     // Update is called once per frame
@@ -39,6 +40,6 @@ public class PlayerVital : MonoBehaviour
     void SetUI()
     {
         playerHealthImage.fillAmount = playerHealth / maxPlayerHealth;
-        playerHeathText.text = Mathf.RoundToInt(playerHealth).ToString();
+        playerHealthText.text = Mathf.RoundToInt(playerHealth).ToString();
     }
 }
