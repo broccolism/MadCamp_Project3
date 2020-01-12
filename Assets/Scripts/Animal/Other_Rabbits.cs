@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class Other_Rabbits : MonoBehaviour
@@ -102,7 +103,7 @@ public class Other_Rabbits : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        TextMesh imText = GetComponent<TextMesh>();
+        TextMeshPro imText = GetComponent<TextMeshPro>();
         int num = Random.Range(0, messages.Length - 1);
         imText.text = messages[num];
         yield return new WaitForSeconds(2);
