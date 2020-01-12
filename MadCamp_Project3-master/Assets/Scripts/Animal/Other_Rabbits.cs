@@ -13,10 +13,23 @@ public class Other_Rabbits : MonoBehaviour
     GameObject target_rabbit;
     public Transform canvas;
 
-    private string[] messages = { "당근 맛있다\n\n", "으악\n\n", "야옹\n\n", "토끼로 변했어요 살려주세요\n\n", "토끼 맛있다\n\n" };
+    private string[] messages = { "당근 맛있다\n\n",
+        "당근 맛있다\n\n",
+        "으악\n\n",
+        "야옹\n\n",
+        "토끼로 변했어요 살려주세요\n\n",
+        "토끼 맛있다\n\n",
+        "뒤!!\n\n",
+        "당근, 파프리카, 호박 등 노란색 채소는 조리해 먹어야 효과가 극대화 된다\n\n",
+        "당근에 있는 베타카로틴은 몸속에서 비타민A로 바뀌어 면역력 증진과 눈건강에 도움을 준다\n\n",
+        "생활의 팁) 음식이 싱거울 땐, 소금을 뿌려서 먹자",
+        "파프리카 맛있다\n\n",
+        "어흥\n\n",
+        "군고구마말랭이 마시쩡\n\n"};
 
 
-   
+
+
     public enum RabbitStatus
     {
         Hop,

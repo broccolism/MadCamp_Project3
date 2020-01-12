@@ -6,13 +6,13 @@ public class Rabbit_Moving : MonoBehaviour
 {
     public float moveSpeed = 10.0f;
     public float rotSpeed = 3.0f;
-    public float HP = 500f;
     public Camera tpsCam;
     public int jump_cool = 0;
     public int numOfCarrots = 0;
 
     //플레이어 관련 변수들
     public PlayerVital playerVital;
+    public float heal = 50f;
 
     private bool jumping = false;
 
@@ -25,11 +25,7 @@ public class Rabbit_Moving : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (HP == 0)
-        {
-            Die();
-        }
-        else
+        if (playerVital.playerHeathText.text != "0")
         {
             if (jump_cool > 0)
                 jump_cool--;
@@ -85,11 +81,6 @@ public class Rabbit_Moving : MonoBehaviour
         tpsCam.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
     }
 
-    void Die()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Carrot")
@@ -99,8 +90,11 @@ public class Rabbit_Moving : MonoBehaviour
         }
         else if (collision.collider.tag == "Fox")
         {
-            Debug.Log("@@@ YOU were eaten by FOX");
-            HP = 0;
+            playerVital.Kill();
+        }
+        else if (collision.collider.tag == "Mushroom")
+        {
+            playerVital.Eat(heal);
         }
     }
 }
