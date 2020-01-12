@@ -12,7 +12,7 @@ public class Rabbit_Moving : MonoBehaviour
 
     //플레이어 관련 변수들
     public PlayerVital playerVital;
-    public float heal = 50f;
+    public float heal = 100f;
 
     private bool jumping = false;
 

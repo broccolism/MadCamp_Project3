@@ -16,8 +16,8 @@ public class PlayerVital : MonoBehaviour
     public Text playerHungerText;
     public float maxPlayerHunger;
     private float playerHunger;
-    
-    public 
+
+    public
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,7 @@ public class PlayerVital : MonoBehaviour
         if (playerHunger < maxPlayerHunger)
         {
             playerHunger = Mathf.Clamp(playerHunger + Time.deltaTime * playerHungerRate, 0, maxPlayerHunger);
-            
+
         }
         else
         {
@@ -50,7 +50,7 @@ public class PlayerVital : MonoBehaviour
 
     public void Eat(float demage)
     {
-        playerHealth = Mathf.Clamp(playerHealth + demage, 0 ,maxPlayerHealth);
+        playerHunger = Mathf.Clamp(playerHunger - demage, 0, maxPlayerHealth);
         SetUI();
     }
 

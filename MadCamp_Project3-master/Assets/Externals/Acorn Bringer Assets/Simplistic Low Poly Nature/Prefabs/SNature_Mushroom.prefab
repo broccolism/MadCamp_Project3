@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4637034189228814}
   - component: {fileID: 33840152734812372}
   - component: {fileID: 23318464693688554}
+  - component: {fileID: 7938732525922114521}
   m_Layer: 0
   m_Name: SNature_Mushroom
   m_TagString: Mushroom
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1293605270326194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,3 +79,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7938732525922114521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293605270326194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8fec2b82692f641b44219c98828bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
