@@ -10,9 +10,10 @@ public class DynamicObjectGenerator : MonoBehaviour
     [System.NonSerialized]
     public static bool genreatingTerrainObjectCompleted;
 
-    public int totalNumber;
+    private int totalNumber;
 
     public DynamicTerrainObjectType terrainObjectType;
+    public bool staticSpwan;
 
     //밀도 관련 변수들
     float totalDensity;
@@ -90,7 +91,8 @@ public class DynamicObjectGenerator : MonoBehaviour
         }
 
         genreatingTerrainObjectCompleted = true;
-        StartCoroutine(SpwanObjectCorutine());
+        if(staticSpwan == true)
+            StartCoroutine(SpwanObjectCorutine());
     }
 
     public bool RemoveObject(GameObject gameObject)

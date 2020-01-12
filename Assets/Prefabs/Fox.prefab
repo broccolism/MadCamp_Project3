@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 4856463276187226391}
   m_Layer: 0
   m_Name: Fox
-  m_TagString: Untagged
+  m_TagString: Fox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foxStatus: 0
-  moveSpeed: 15
+  moveSpeed: 19
   viewRange: 60
   collider: {fileID: 4856463276187226390}
   groundCheckDistance: 0

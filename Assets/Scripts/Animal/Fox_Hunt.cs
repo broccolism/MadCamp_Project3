@@ -15,7 +15,6 @@ public class Fox_Hunt : MonoBehaviour
 
     private Rigidbody eatMe; //rabbit
     private bool found = false; //found rabbit
-    private int count = 0;
     GameObject target_rabbit;
     Ray ray;
     RaycastHit rayHit;
@@ -50,7 +49,15 @@ public class Fox_Hunt : MonoBehaviour
             {
                 Rigidbody fox = GetComponent<Rigidbody>();
                 float dir = Random.Range(-50f, 50f);
-                this.transform.eulerAngles = new Vector3(0, dir, 0);
+
+                if (this.transform.position.y <= 13)
+                {
+                    this.transform.eulerAngles = new Vector3(0, 180f, 0);
+                }
+                else
+                {
+                    this.transform.eulerAngles = new Vector3(0, dir, 0);
+                }
                 fox.velocity = (this.transform.forward * 10);
                 foxStatus = FoxStatus.Idle;
             }
@@ -80,6 +87,7 @@ public class Fox_Hunt : MonoBehaviour
     void Find()
     {
         GameObject[] target = GameObject.FindGameObjectsWithTag("Rabbit");
+
         for (int i = 0; i < target.Length; i++)
         {
             GameObject onetarget = target[i];
@@ -97,9 +105,6 @@ public class Fox_Hunt : MonoBehaviour
                 ray.direction = offset;
                 if (Physics.Raycast(ray.origin, ray.direction, out rayHit, target_dist))
                 {
-
-                    Debug.Log("@@@ RAY @@@ origin: " + ray.origin + ", direction: " + ray.direction + ", dist: " + target_dist);
-                    Debug.Log("@@@@@" + rayHit.collider.gameObject.tag);
                     found = true;
                 }
                 break;
@@ -125,8 +130,19 @@ public class Fox_Hunt : MonoBehaviour
         }
         else
         {
-            fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.2f);
-            fox.transform.LookAt(target_rabbit.transform);
+            if (target_rabbit.transform.position.y <= 13)
+            {
+                this.transform.eulerAngles = new Vector3(0, 180f, 0);
+                fox.velocity = (this.transform.forward * 10);
+                target_rabbit = null;
+                found = false;
+            }
+            else
+            {
+                fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.2f);
+                fox.transform.LookAt(target_rabbit.transform);
+            }
+
         }
     }
 

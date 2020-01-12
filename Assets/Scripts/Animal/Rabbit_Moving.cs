@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Rabbit_Moving : MonoBehaviour
 {
-    //게임 관련 변수
-    public GameManager gameManager;
-
     public float moveSpeed = 10.0f;
     public float rotSpeed = 3.0f;
-    public float HP = 500f;
     public Camera tpsCam;
     public int jump_cool = 0;
+    public int numOfCarrots = 0;
 
     //플레이어 관련 변수들
     public PlayerVital playerVital;
+    public float heal = 50f;
 
     private bool jumping = false;
 
@@ -27,11 +25,7 @@ public class Rabbit_Moving : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (HP == 0)
-        {
-            Die();
-        }
-        else
+        if (playerVital.playerHeathText.text != "0")
         {
             if (jump_cool > 0)
                 jump_cool--;
@@ -39,11 +33,10 @@ public class Rabbit_Moving : MonoBehaviour
             if (this.transform.position.y <= 12.1f)
             {
                 playerVital.Attack(1);
-                HP--;
             }
             MoveCtrl();
             RotCtrl();
-        }
+        } 
     }
 
     void MoveCtrl()
@@ -70,7 +63,7 @@ public class Rabbit_Moving : MonoBehaviour
             if (jump_cool <= 0)
             {
                 Rigidbody rabbit = GetComponent<Rigidbody>();
-                rabbit.AddForce(0, 300f, 0);
+                rabbit.AddForce(0, 500f, 0);
                 jump_cool = 100;
             }
 
@@ -87,8 +80,20 @@ public class Rabbit_Moving : MonoBehaviour
         tpsCam.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
     }
 
-    void Die()
+    private void OnCollisionEnter(Collision collision)
     {
-        gameManager.EndGame();
+        if (collision.collider.tag == "Carrot")
+        {
+            numOfCarrots++;
+            Debug.Log("@@@ YOU ate CARROT. So far: " + numOfCarrots + " carrots you've eaten.");
+        }
+        else if (collision.collider.tag == "Fox")
+        {
+            playerVital.Kill();
+        }
+        else if (collision.collider.tag == "Mushroom")
+        {
+            playerVital.Eat(heal);
+        }
     }
 }
