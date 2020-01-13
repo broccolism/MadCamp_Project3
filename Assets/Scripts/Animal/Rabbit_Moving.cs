@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Rabbit_Moving : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip attackSound;
+    public AudioClip findSound;
+    public AudioClip hopSound;
+
     public GameManager gameManager;
 
     public float moveSpeed = 10.0f;
@@ -82,6 +87,7 @@ public class Rabbit_Moving : MonoBehaviour
                 Rigidbody rabbit = GetComponent<Rigidbody>();
                 rabbit.AddForce(0, 500f, 0);
                 jump_cool = 100;
+                audioSource.PlayOneShot(hopSound, 1);
             }
 
         }
@@ -137,6 +143,7 @@ public class Rabbit_Moving : MonoBehaviour
         }
         else if (collision.collider.tag == "Fox")
         {
+            audioSource.PlayOneShot(attackSound, 2);
             playerVital.Kill();
         }
         else if (collision.collider.tag == "Mushroom")

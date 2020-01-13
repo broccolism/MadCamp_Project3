@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip ingameAudio;
+    public AudioClip failedAudio;
+    public AudioClip successAudio;
+
     public enum GameStatus
     {
         MainMenu,
@@ -61,6 +66,8 @@ public class GameManager : MonoBehaviour
 
     private void StartInGame()
     {
+        audioSource.clip = ingameAudio;
+        audioSource.Play();
         Cursor.visible = false;
         playTimeInSecond = Time.time;
         gameStatus = GameStatus.UpdateInGame;
@@ -76,6 +83,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         finalScore = Time.time - playTimeInSecond;
         gameStatus = GameStatus.UpdateResult;
+        audioSource.Play();
     }
 
     private void UpdateResult()
@@ -86,17 +94,19 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(bool clear)
     {
-        Time.timeScale = 0;
         if (gameStatus == GameStatus.UpdateInGame)
             gameStatus = GameStatus.StartResult;
 
         if(clear == false)
         {
+            audioSource.clip = failedAudio;
             finalText.text = "GAME OVER";
         } else
         {
+            audioSource.clip = successAudio;
             finalText.text = "CLEAR";
         }
+        Time.timeScale = 0;
     }
 
     public string SecondToString(float _second)

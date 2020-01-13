@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Fox_Hunt : MonoBehaviour
 {
+
+
     public enum FoxStatus
     {
         Chase,
