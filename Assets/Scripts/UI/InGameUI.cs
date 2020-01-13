@@ -16,6 +16,26 @@ public class InGameUI : MonoBehaviour
     public Button restartButton;
     public Button menuButton;
     public Text endsScoreText;
+    public Image jumpImage;
+    public Text jumpText;
+
+    public GameObject empty_carrot_0;
+    public GameObject empty_carrot_1;
+    public GameObject empty_carrot_2;
+    public GameObject empty_carrot_3;
+    public GameObject empty_carrot_4;
+    public GameObject empty_carrot_5;
+    public GameObject empty_carrot_6;
+
+    public GameObject full_carrot_0;
+    public GameObject full_carrot_1;
+    public GameObject full_carrot_2;
+    public GameObject full_carrot_3;
+    public GameObject full_carrot_4;
+    public GameObject full_carrot_5;
+    public GameObject full_carrot_6;
+
+
 
     private void Start()
     {
@@ -27,6 +47,23 @@ public class InGameUI : MonoBehaviour
 
         restartButton.onClick.AddListener(ReloadScene);
         menuButton.onClick.AddListener(LoadMainMenu);
+
+        empty_carrot_0.SetActive(true);
+        empty_carrot_1.SetActive(true);
+        empty_carrot_2.SetActive(true);
+        empty_carrot_3.SetActive(true);
+        empty_carrot_4.SetActive(true);
+        empty_carrot_5.SetActive(true);
+        empty_carrot_6.SetActive(true);
+
+        full_carrot_0.SetActive(false);
+        full_carrot_1.SetActive(false);
+        full_carrot_2.SetActive(false);
+        full_carrot_3.SetActive(false);
+        full_carrot_4.SetActive(false);
+        full_carrot_5.SetActive(false);
+        full_carrot_6.SetActive(false);
+
     }
 
     void ReloadScene()

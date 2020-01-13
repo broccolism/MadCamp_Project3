@@ -56,14 +56,14 @@ public class PlayerVital : MonoBehaviour
 
     public void Eat(float demage)
     {
-        playerHealth = Mathf.Clamp(playerHealth + demage, 0, maxPlayerHealth);
+        playerHunger = Mathf.Clamp(playerHunger - demage, 0, maxPlayerHunger);
         SetUI();
     }
 
     public void Kill()
     {
         playerHealth = 0;
-        gameManager.EndGame();
+        gameManager.EndGame(false);
         SetUI();
     }
 

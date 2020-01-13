@@ -33,6 +33,7 @@ public class MapGenerator : MonoBehaviour
 
     private void Awake()
     {
+        seed = UnityEngine.Random.Range(0, 1000);
         falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
     }
 

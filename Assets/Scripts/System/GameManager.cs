@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     //시스템 UI정보
     public Text playTimeText;
+    public Text finalText;
     public InGameUI inGameUI;
 
     //점수
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = true;
         finalScore = Time.time - playTimeInSecond;
-        gameStatus = GameStatus.UpdateResult; 
+        gameStatus = GameStatus.UpdateResult;
     }
 
     private void UpdateResult()
@@ -83,11 +84,19 @@ public class GameManager : MonoBehaviour
         inGameUI.endsScoreText.text = SecondToString(finalScore);
     }
 
-    public void EndGame()
+    public void EndGame(bool clear)
     {
         Time.timeScale = 0;
-        if(gameStatus == GameStatus.UpdateInGame)
+        if (gameStatus == GameStatus.UpdateInGame)
             gameStatus = GameStatus.StartResult;
+
+        if(clear == false)
+        {
+            finalText.text = "GAME OVER";
+        } else
+        {
+            finalText.text = "CLEAR";
+        }
     }
 
     public string SecondToString(float _second)

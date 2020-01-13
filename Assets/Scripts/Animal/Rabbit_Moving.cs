@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class Rabbit_Moving : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public float moveSpeed = 10.0f;
     public float rotSpeed = 3.0f;
     public Camera tpsCam;
-    public int jump_cool = 0;
+    private int jump_cool = 0;
+    public int maxJumpCool;
     public int numOfCarrots = 0;
+
+    public InGameUI ui;
 
     //플레이어 관련 변수들
     public PlayerVital playerVital;
-    public float heal = 50f;
+    public float heal = 100f;
 
     private bool jumping = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+       if(maxJumpCool == 0)
+        {
+            maxJumpCool = 100;
+        }
     }
 
     // Update is called once per frame
@@ -36,7 +44,16 @@ public class Rabbit_Moving : MonoBehaviour
             }
             MoveCtrl();
             RotCtrl();
-        } 
+        }
+
+        if(numOfCarrots == 7)
+        {
+            gameManager.EndGame(true);
+        }
+
+        ui.jumpImage.fillAmount = 1 - jump_cool / (float)maxJumpCool;
+        ui.jumpText.text = Mathf.RoundToInt(maxJumpCool - ((jump_cool / (float)maxJumpCool) * 100)).ToString();
+
     }
 
     void MoveCtrl()
@@ -85,7 +102,38 @@ public class Rabbit_Moving : MonoBehaviour
         if (collision.collider.tag == "Carrot")
         {
             numOfCarrots++;
-            Debug.Log("@@@ YOU ate CARROT. So far: " + numOfCarrots + " carrots you've eaten.");
+            Debug.Log("#### num of carrots: " + numOfCarrots);
+            if (numOfCarrots == 1)
+            {
+                Debug.Log("@@@@before SET");
+                Debug.Log("@@@@@@@ NULL: " + ui.full_carrot_0);
+                ui.full_carrot_0.SetActive(true);
+                Debug.Log("@@@@after SET");
+            }
+            else if (numOfCarrots == 2)
+            {
+                ui.full_carrot_1.SetActive(true);
+            }
+            else if (numOfCarrots == 3)
+            {
+                ui.full_carrot_2.SetActive(true);
+            }
+            else if (numOfCarrots == 4)
+            {
+                ui.full_carrot_3.SetActive(true);
+            }
+            else if (numOfCarrots == 5)
+            {
+                ui.full_carrot_4.SetActive(true);
+            }
+            else if (numOfCarrots == 6)
+            {
+                ui.full_carrot_5.SetActive(true);
+            }
+            else if (numOfCarrots == 7)
+            {
+                ui.full_carrot_6.SetActive(true);
+            }
         }
         else if (collision.collider.tag == "Fox")
         {
