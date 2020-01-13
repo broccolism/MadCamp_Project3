@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Carrot
+  - Fox
+  - Mushroom
+  - Rabbit
+  - ground
   layers:
   - Default
   - TransparentFX

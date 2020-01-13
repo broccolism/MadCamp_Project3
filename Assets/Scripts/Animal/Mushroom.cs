@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mushroom : MonoBehaviour
 {
-    DynamicObjectGenerator generator;
+    public DynamicObjectGenerator generator;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,8 @@ public class Mushroom : MonoBehaviour
         if (collision.collider.tag == "Rabbit") //when the carrot meets rabbit
         {
             Debug.Log("@@@@ YOU ATE MUSHROOM @@@");
-            Destroy(this.gameObject);
             generator.RemoveObject(this.gameObject);
+            Destroy(this.gameObject);
         }
 
     }

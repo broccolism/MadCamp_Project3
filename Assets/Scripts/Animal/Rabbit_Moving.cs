@@ -6,10 +6,13 @@ public class Rabbit_Moving : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip attackSound;
-    public AudioClip findSound;
+    public AudioClip healSound;
     public AudioClip hopSound;
+    public AudioClip carrotSound;
 
     public GameManager gameManager;
+
+    public bool isGround;
 
     public float moveSpeed = 10.0f;
     public float rotSpeed = 3.0f;
@@ -17,6 +20,8 @@ public class Rabbit_Moving : MonoBehaviour
     private int jump_cool = 0;
     public int maxJumpCool;
     public int numOfCarrots = 0;
+
+    public float jumpForce;
 
     public InGameUI ui;
 
@@ -64,28 +69,33 @@ public class Rabbit_Moving : MonoBehaviour
     void MoveCtrl()
     {
 
-        if (Input.GetKey(KeyCode.W))
+        Vector3 v3 = new Vector3(0, 0, 0);
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            this.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            v3 += Vector3.forward;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            this.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            v3 += Vector3.back;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            this.transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+            v3 += Vector3.left;
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            this.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            v3 += Vector3.right;
         }
+
+        transform.Translate(moveSpeed * v3.normalized * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (jump_cool <= 0)
+            if (jump_cool <= 0 && isGround)
             {
+                isGround = false;
                 Rigidbody rabbit = GetComponent<Rigidbody>();
-                rabbit.AddForce(0, 500f, 0);
+                rabbit.AddForce(0, jumpForce, 0);
                 jump_cool = 100;
                 audioSource.PlayOneShot(hopSound, 1);
             }
@@ -105,8 +115,14 @@ public class Rabbit_Moving : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.collider.tag == "ground")
+        {
+            isGround = true;
+        }
         if (collision.collider.tag == "Carrot")
         {
+            playerVital.EatCarrot();
+            audioSource.PlayOneShot(carrotSound, 1);
             numOfCarrots++;
             Debug.Log("#### num of carrots: " + numOfCarrots);
             if (numOfCarrots == 1)
@@ -143,12 +159,13 @@ public class Rabbit_Moving : MonoBehaviour
         }
         else if (collision.collider.tag == "Fox")
         {
-            audioSource.PlayOneShot(attackSound, 2);
+            audioSource.PlayOneShot(attackSound, 0.5f);
             playerVital.Kill();
         }
         else if (collision.collider.tag == "Mushroom")
         {
-            playerVital.Eat(heal);
+            audioSource.PlayOneShot(healSound, 1);
+            playerVital.EatMushroom(heal);
         }
     }
 }

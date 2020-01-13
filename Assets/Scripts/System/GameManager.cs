@@ -99,13 +99,17 @@ public class GameManager : MonoBehaviour
 
         if(clear == false)
         {
+            inGameUI.panelImage.color = new Color32(214, 5, 5 , 100);
             audioSource.clip = failedAudio;
             finalText.text = "GAME OVER";
         } else
         {
+            inGameUI.panelImage.color = new Color32(5, 125, 214, 100);
             audioSource.clip = successAudio;
             finalText.text = "CLEAR";
         }
+
+        Debug.Log(clear);
         Time.timeScale = 0;
     }
 
@@ -120,7 +124,7 @@ public class GameManager : MonoBehaviour
         string minString = (min == 0) ? "00" : min.ToString("00");
         string hourString = (hour == 0) ? "00" : hour.ToString("00");
 
-        string timeString = hourString + ":" + minString + " " + secondString;
+        string timeString = hourString + ":" + minString + ":" + secondString;
 
         return timeString;
     }

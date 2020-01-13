@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Fox_Hunt : MonoBehaviour
 {
-
+    public AudioSource audioSource;
+    public AudioClip chaseSound;
+    public AudioClip findSound;
 
     public enum FoxStatus
     {
@@ -36,6 +38,8 @@ public class Fox_Hunt : MonoBehaviour
         m_IsGrounded = false;
         StartCoroutine(IEChase());
         foxStatus = FoxStatus.Idle;
+        //audioSource.clip = findSound;
+        //audioSource.Play();
     }
 
     IEnumerator IEChase()
@@ -44,11 +48,16 @@ public class Fox_Hunt : MonoBehaviour
         {
             if (found)
             {
-                print("chase rabbit");
+                audioSource.clip = chaseSound;
+                if (!audioSource.isPlaying)
+                    audioSource.Play();
                 foxStatus = FoxStatus.Chase;
             }
             else
             {
+                if(audioSource.isPlaying)
+                    audioSource.Stop();
+
                 Rigidbody fox = GetComponent<Rigidbody>();
                 float dir = Random.Range(-50f, 50f);
 
@@ -116,6 +125,8 @@ public class Fox_Hunt : MonoBehaviour
 
     void Chase()
     {
+        if (target_rabbit == null)
+            return;
         Rigidbody fox = GetComponent<Rigidbody>();
         Vector3 current_pos = this.transform.position;
         offset = target_rabbit.transform.position - current_pos;
@@ -141,7 +152,7 @@ public class Fox_Hunt : MonoBehaviour
             }
             else
             {
-                fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.2f);
+                fox.transform.position = Vector3.MoveTowards(fox.transform.position, target_rabbit.transform.position, 0.25f);
                 fox.transform.LookAt(target_rabbit.transform);
             }
 

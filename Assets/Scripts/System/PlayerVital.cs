@@ -54,9 +54,16 @@ public class PlayerVital : MonoBehaviour
         SetUI();
     }
 
-    public void Eat(float demage)
+    public void EatMushroom(float demage)
     {
         playerHunger = Mathf.Clamp(playerHunger - demage, 0, maxPlayerHunger);
+        SetUI();
+    }
+
+    public void EatCarrot()
+    {
+        playerHunger = 0;
+        playerHealth = maxPlayerHealth;
         SetUI();
     }
 

@@ -16269,7 +16269,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SETTING
+  m_Text: EXIT
 --- !u!114 &9121122172257348851
 MonoBehaviour:
   m_ObjectHideFlags: 0

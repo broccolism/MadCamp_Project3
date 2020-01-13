@@ -165,6 +165,7 @@ public class DynamicObjectGenerator : MonoBehaviour
         Rigidbody object_rigidbody;
 
         GameObject rock = Instantiate(terrainObjectType.prefab);
+        rock.tag = this.tag;
         //Initializing spwaned object
         if (terrainObjectType.insertDepth <= 0.001)
             rock.transform.position = new Vector3(spwanPosition.x, spwanPosition.y - terrainObjectType.insertDepth * scale, spwanPosition.z);

@@ -18,6 +18,8 @@ public class InGameUI : MonoBehaviour
     public Text endsScoreText;
     public Image jumpImage;
     public Text jumpText;
+    public Button returnButton;
+    public Button mainButton;
 
     public GameObject empty_carrot_0;
     public GameObject empty_carrot_1;
@@ -35,6 +37,8 @@ public class InGameUI : MonoBehaviour
     public GameObject full_carrot_5;
     public GameObject full_carrot_6;
 
+    public Image panelImage;
+
 
 
     private void Start()
@@ -47,6 +51,9 @@ public class InGameUI : MonoBehaviour
 
         restartButton.onClick.AddListener(ReloadScene);
         menuButton.onClick.AddListener(LoadMainMenu);
+        mainButton.onClick.AddListener(LoadMainMenu);
+        returnButton.onClick.AddListener(ReturnButton);
+
 
         empty_carrot_0.SetActive(true);
         empty_carrot_1.SetActive(true);
@@ -64,6 +71,19 @@ public class InGameUI : MonoBehaviour
         full_carrot_5.SetActive(false);
         full_carrot_6.SetActive(false);
 
+    }
+
+    void ReturnButton()
+    {
+        ActivateInGame();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            ActivatePause();
+        }
     }
 
     void ReloadScene()
@@ -98,6 +118,7 @@ public class InGameUI : MonoBehaviour
 
     void ActivatePause()
     {
+        Time.timeScale = 0;
         ingamePanel.SetActive(false);
         pausePanel.SetActive(true);
         endPanel.SetActive(false);
@@ -105,6 +126,7 @@ public class InGameUI : MonoBehaviour
 
     void ActivateInGame()
     {
+        Time.timeScale = 1;
         ingamePanel.SetActive(true);
         pausePanel.SetActive(false);
         endPanel.SetActive(false);
@@ -112,6 +134,7 @@ public class InGameUI : MonoBehaviour
 
     public void ActivateEndGame()
     {
+        Time.timeScale = 1;
         ingamePanel.SetActive(false);
         pausePanel.SetActive(false);
         endPanel.SetActive(true);

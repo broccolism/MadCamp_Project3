@@ -43,7 +43,7 @@ public class TitleUI : MonoBehaviour
 
     void OnClickSettingButton()
     {
-
+        Application.Quit();
     }
 
     void LoadScene()
