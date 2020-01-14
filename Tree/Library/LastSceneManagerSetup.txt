@@ -1,6 +1,0 @@
-sceneSetups:
-- path: C:/Users/q/Downloads/Tower-Defense-Tutorial-master/Tower-Defense-Tutorial-master/Tower
-    Defense Unity Project/Assets/Level02.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
